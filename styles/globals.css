@@ -4,6 +4,12 @@
 
 @layer base {
   body {
-    @apply bg-[#06202A] text-gray-300;
+    @apply text-gray-300;
+  }
+}
+
+@layer components {
+  .icons {
+    @apply hidden xl:inline-flex p-2 h-7 w-10 bg-gray-200 rounded-full text-gray-700 cursor-pointer;
   }
 }
