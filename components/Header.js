@@ -1,4 +1,5 @@
 import React from "react";
+import { useSession, signOut } from "next-auth/react";
 import Image from "next/image";
 import {
   ShoppingCartIcon,
@@ -14,6 +15,8 @@ import {
 } from "@heroicons/react/solid";
 import HeaderIcon from "./HeaderIcon";
 const Header = () => {
+  const { data: session } = useSession();
+  console.log(session.user.image);
   return (
     <header className="flex sticky top-0 z-10 items-center p-2 lg:p-5 shadow-md  justify-between">
       <div className="flex items-center">
@@ -35,7 +38,7 @@ const Header = () => {
       </div>
       <div>
         <div className="flex justify-evenly flex-grow space-x-6 md:space-x-2 ">
-          <HeaderIcon Icon={UserIcon} />
+          <HeaderIcon active Icon={UserIcon} />
           <HeaderIcon Icon={FlagIcon} />
           <HeaderIcon Icon={PlayIcon} />
           <HeaderIcon Icon={ShoppingCartIcon} />
@@ -44,7 +47,19 @@ const Header = () => {
       </div>
       <div className="flex items-center sm:space-x-2 justify-end">
         {/* profile image */}
-        <p className="font-semibold pr-3 whitespace-nowrap ">Mahmoud Mahfoz</p>
+        <Image
+          className="rounded-full"
+          src={session.user.image}
+          width={50}
+          height={50}
+          layout="fixed"
+        />
+        <p
+          className="font-semibold pr-3 whitespace-nowrap cursor-pointer "
+          onClick={signOut}
+        >
+          {session.user.name}
+        </p>
         <ViewGridAddIcon className="icons" />
         <ChatIcon className="icons" />
         <BellIcon className="icons" />

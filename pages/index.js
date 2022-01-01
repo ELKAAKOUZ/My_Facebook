@@ -1,8 +1,15 @@
 import Head from "next/head";
-import Image from "next/image";
 import Header from "../components/Header";
+import Login from "../components/Login";
+import { getSession } from "next-auth/react";
+import { useSession, signIn, signOut } from "next-auth/react";
+import Sidebar from "../components/Sidebar";
+import Feed from "../components/Feed";
 
 export default function Home() {
+  const { data: session } = useSession();
+
+  if (!session) return <Login />;
   return (
     <div>
       <Head>
@@ -13,9 +20,20 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <Header />
+      <Header />
+      <main className="flex">
+        <Sidebar />
+        <Feed />
       </main>
     </div>
   );
 }
+// export async function getServerSideProps(context) {
+//   const session = await getSession(context);
+//   console.log(session);
+//   return {
+//     props: {
+//       session,
+//     },
+//   };
+// }
