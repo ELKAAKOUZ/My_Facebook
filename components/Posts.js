@@ -15,6 +15,7 @@ const Posts = () => {
         throw new Error("something went wrong ..");
       }
       const response = await request.json();
+
       console.log(response);
       const loadedPosts = [];
       for (const key in response) {
@@ -24,10 +25,14 @@ const Posts = () => {
           postImage: response[key].postImage,
           name: response[key].name,
           image: response[key].image,
+          time: response[key].time,
         });
       }
-      setFetchedUserPOsts(loadedPosts);
-      console.log(fetcheduserposts);
+      const ordered_loadedPosts = loadedPosts.sort((a, b) =>
+        a.time < b.time ? 1 : -1
+      );
+      setFetchedUserPOsts(ordered_loadedPosts);
+      // console.log(fetcheduserposts);
     };
 
     fetchPosts().catch((error) => {
@@ -55,6 +60,7 @@ const Posts = () => {
           image={post.image}
           message={post.message}
           postImage={post.postImage}
+          time={post.time}
         />
       ))}
     </div>

@@ -2,8 +2,9 @@ import React from "react";
 import Image from "next/image";
 import { ChatAltIcon, ShareIcon, ThumbUpIcon } from "@heroicons/react/solid";
 
-const Post = ({ name, image, postImage, message }) => {
-  console.log(postImage, message);
+const Post = ({ time, name, image, postImage, message }) => {
+  // console.log(time.getFullYear());
+
   return (
     <div className=" bg-white mt-3 mp-3 rounded-t-2xl  shadow-md text-xl text-gray-600">
       <div className="p-5">
@@ -15,7 +16,12 @@ const Post = ({ name, image, postImage, message }) => {
             height={40}
             layout="fixed"
           />
-          <p className="font-medium">{name}</p>
+          <div>
+            <p className="font-medium">{name}</p>
+            <p className="text-gray-400 text-xs">
+              {new Date(time).toLocaleString()}
+            </p>
+          </div>
         </div>
 
         <p className="text-left mt-4 mb-7">{message}</p>

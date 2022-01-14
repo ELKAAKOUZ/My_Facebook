@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { useSession } from "next-auth/react";
-import { addDoc, collection } from "firebase/firestore";
-// import firebase from "firebase/app";
-// import firebase from "firebase";
-import { db } from "../firebase";
+// import { addDoc, collection } from "firebase/firestore";
+import firebase from "firebase/app";
+
+// import { db } from "../firebase";
 import {
   CameraIcon,
   EmojiHappyIcon,
@@ -27,7 +27,9 @@ const InputBox = () => {
         email: session.user.email,
         image: session.user.image,
         postImage: imageToPost,
-        // createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        time: firebase.firestore.Timestamp.now().toDate().toISOString(),
+        // .toLocaleString()
+        // .getFullYear(),
       }),
     });
     removeImage();
@@ -93,7 +95,7 @@ const InputBox = () => {
           className="inputIcon"
         >
           <CameraIcon className="h-7 text-green-400" />
-          <p className="text-xs sm:text-sm lg:text-base ">Live video</p>
+          <p className="text-xs sm:text-sm lg:text-base ">Upload photo</p>
           <input
             ref={filePickerRef}
             onChange={addFileToPost}

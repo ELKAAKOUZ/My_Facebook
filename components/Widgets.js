@@ -8,20 +8,24 @@ import Contact from "./Contact";
 
 const Contacts = [
   {
-    src: "https://links.papareact.com/f0p",
-    name: "Jeff Bezoz",
+    // src: "https://links.papareact.com/f0p",
+    src: "/celia.JPG",
+    name: "Celia M Mahfoz",
   },
   {
-    src: "https://links.papareact.com/kxk",
-    name: "Elon Mask",
+    // src: "https://links.papareact.com/kxk",
+    src: "/bruder.jpg",
+    name: "Ahmed beh Mahfoz",
   },
   {
     src: "https://links.papareact.com/zvy",
-    name: "Bill Gates",
+    src: "/mutter.jpg",
+    name: "Rehab Mahfoz",
   },
   {
-    src: "https://links.papareact.com/snf",
-    name: "Mark Zukerberge",
+    // src: "https://links.papareact.com/snf",
+    src: "/vater.JPG",
+    name: "Mahfoz Awad",
   },
   {
     src: "https://links.papareact.com/d0c",

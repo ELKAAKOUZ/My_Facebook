@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Header from "../components/Header";
 import Login from "../components/Login";
-import { getSession } from "next-auth/react";
+// import { getSession } from "next-auth/react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Sidebar from "../components/Sidebar";
 import Feed from "../components/Feed";
