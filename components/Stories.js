@@ -1,13 +1,8 @@
 import React from "react";
 import MyStory from "./MyStory";
 import Story from "./Story";
-
+import { useSession } from "next-auth/react";
 const stories = [
-  {
-    name: "Mahmoud Mahfoz",
-    src: "https://links.papareact.com/zof",
-    profile: "https://links.papareact.com/f0p",
-  },
   {
     name: "Ahmed beh Mahfoz",
     src: "/bruder.jpg",
@@ -30,9 +25,12 @@ const stories = [
   },
 ];
 const Stories = () => {
+  const { data: session } = useSession();
+
   return (
-    <div className="flex justify-center space-x-3 mx-auto">
+    <div className="flex justify-center  space-x-3 mx-auto">
       {/* <MyStory /> */}
+      <Story name={session.user.name} src={session.user.image} />
       {stories.map((account) => (
         <Story
           key={account.name}

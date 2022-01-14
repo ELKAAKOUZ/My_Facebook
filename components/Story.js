@@ -3,14 +3,16 @@ import Image from "next/image";
 const Story = ({ src, name, profile }) => {
   return (
     <div className="relative h-14 w-14 md:h-20 md:w-20 lg:h-56 lg:w-32 cursor-pointer overflow-x p-3 transition duration-200 ease-in-out hover:scale-105 hover:animate-pulse">
-      <Image
-        className="absolute top-10  opacity-0 lg:opacity-100 rounded-full z-50"
-        src={profile}
-        width={40}
-        height={40}
-        layout="fixed"
-        // objectFit="cover"
-      />
+      {profile && (
+        <Image
+          className="absolute top-10  opacity-0 lg:opacity-100 rounded-full z-50"
+          src={profile}
+          width={40}
+          height={40}
+          layout="fixed"
+          // objectFit="cover"
+        />
+      )}
       <Image
         className="object-cover rounded-full lg:rounded-3xl filter brightness-75"
         src={src}

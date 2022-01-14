@@ -16,7 +16,6 @@ const Posts = () => {
       }
       const response = await request.json();
 
-      console.log(response);
       const loadedPosts = [];
       for (const key in response) {
         loadedPosts.push({
@@ -52,7 +51,7 @@ const Posts = () => {
     return <div className="text-red-500 text-center mt-5 ">{httpError}</div>;
   }
   return (
-    <div>
+    <div className="max-w-xs sm:max-w-md md:max-w-2xl ">
       {fetcheduserposts.map((post) => (
         <Post
           key={post.id}

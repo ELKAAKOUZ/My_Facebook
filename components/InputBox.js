@@ -1,10 +1,7 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { useSession } from "next-auth/react";
-// import { addDoc, collection } from "firebase/firestore";
-import firebase from "firebase/app";
-
-// import { db } from "../firebase";
+import firebase from "firebase";
 import {
   CameraIcon,
   EmojiHappyIcon,
@@ -28,8 +25,6 @@ const InputBox = () => {
         image: session.user.image,
         postImage: imageToPost,
         time: firebase.firestore.Timestamp.now().toDate().toISOString(),
-        // .toLocaleString()
-        // .getFullYear(),
       }),
     });
     removeImage();
@@ -51,7 +46,7 @@ const InputBox = () => {
     setImageToPost(null);
   };
   return (
-    <div className=" bg-white font-medium mt-6 p-2 rounded-2xl shadow-md  text-gray-500">
+    <div className=" bg-white font-medium max-w-xs sm:max-w-md md:max-w-2xl   mt-6 p-2 rounded-2xl shadow-md  text-gray-500">
       <div className="flex items-center space-x-4 p-4">
         <Image
           width={40}
@@ -63,9 +58,11 @@ const InputBox = () => {
         <form className="flex flex-1">
           <input
             ref={inputRef}
-            className="px-5 bg-gray-300  flex-grow focus:outline-none h-12  rounded-full"
+            className="px-2 text-xs  sm:text-lg  sm:px-5 bg-gray-300  flex-grow focus:outline-none h-12  rounded-full"
             type="text"
-            placeholder={`whats is in your mind ${session.user.name} ?`}
+            placeholder={`whats is in your mind ${
+              session.user.name.split(" ")[0]
+            } ?`}
           />
           <button type="submit" hidden onClick={sendPost}>
             Submit
@@ -85,16 +82,16 @@ const InputBox = () => {
           </div>
         )}
       </div>
-      <div className="flex justify-evenly  p-3 border-t">
+      <div className="flex justify-evenly  whitespace-nowrap p-3 border-t">
         <div className="inputIcon">
-          <VideoCameraIcon className="h-7 text-red-500" />
+          <VideoCameraIcon className="h-5 sm:h-7 text-red-500" />
           <p className="text-xs sm:text-sm lg:text-base ">Live video</p>
         </div>
         <div
           onClick={() => filePickerRef.current.click()}
           className="inputIcon"
         >
-          <CameraIcon className="h-7 text-green-400" />
+          <CameraIcon className="h-5 sm:h-7 text-green-400" />
           <p className="text-xs sm:text-sm lg:text-base ">Upload photo</p>
           <input
             ref={filePickerRef}
@@ -104,7 +101,7 @@ const InputBox = () => {
           />
         </div>
         <div className="inputIcon">
-          <EmojiHappyIcon className="h-7 text-yellow-300" />
+          <EmojiHappyIcon className="h-5 sm:h-7 text-yellow-300" />
           <p className="text-xs sm:text-sm lg:text-base ">Feeling/Activity</p>
         </div>
       </div>

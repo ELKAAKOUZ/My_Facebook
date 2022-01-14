@@ -16,7 +16,6 @@ import {
 import HeaderIcon from "./HeaderIcon";
 const Header = () => {
   const { data: session } = useSession();
-  console.log(session.user.image);
   return (
     <header className="flex sticky top-0 z-10 items-center p-2 lg:p-5 shadow-md  justify-between">
       <div className="flex items-center">
@@ -32,12 +31,12 @@ const Header = () => {
           <input
             type="text"
             placeholder="search facebook"
-            className=" h-7 outline-none hidden md:inline-flex flex-shrink bg-transparent placeholder-gray-500"
+            className=" h-7 outline-none hidden md:inline-flex md:w-20 lg:w-32 flex-shrink bg-transparent placeholder-gray-500"
           />
         </div>
       </div>
       <div>
-        <div className="flex justify-evenly flex-grow space-x-6 md:space-x-2 ">
+        <div className="flex justify-evenly flex-grow space-x-6 sm:space-x-4 md:space-x-6 ">
           <HeaderIcon active Icon={UserIcon} />
           <HeaderIcon Icon={FlagIcon} />
           <HeaderIcon Icon={PlayIcon} />
@@ -50,15 +49,19 @@ const Header = () => {
         <Image
           className="rounded-full"
           src={session.user.image}
-          width={50}
-          height={50}
+          width={40}
+          height={40}
           layout="fixed"
         />
         <p
-          className="font-semibold pr-3 whitespace-nowrap cursor-pointer "
+          className="font-semibold pr-3  whitespace-nowrap cursor-pointer "
           onClick={signOut}
         >
-          {session.user.name}
+          {session.user.name
+            .charAt(0)
+            .concat(
+              session.user.name.substr(session.user.name.indexOf(" ") + 1, 2)
+            )}
         </p>
         <ViewGridAddIcon className="icons" />
         <ChatIcon className="icons" />

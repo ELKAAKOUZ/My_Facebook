@@ -49,7 +49,7 @@ const Widgets = () => {
         </div>
       </div>
       {Contacts.map((user) => (
-        <Contact src={user.src} name={user.name} />
+        <Contact key={user.name} src={user.src} name={user.name} />
       ))}
     </div>
   );
